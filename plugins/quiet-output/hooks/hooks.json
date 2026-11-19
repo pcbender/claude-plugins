@@ -1,0 +1,16 @@
+{
+  "description": "Rewrite plain install/build/test Bash commands to run through quiet-run.sh",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/scripts/filter-noisy-commands.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

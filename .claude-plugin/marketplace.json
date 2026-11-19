@@ -1,0 +1,17 @@
+{
+  "name": "pcbender-plugins",
+  "owner": {
+    "name": "pcbender"
+  },
+  "metadata": {
+    "description": "Personal Claude Code plugins."
+  },
+  "plugins": [
+    {
+      "name": "quiet-output",
+      "source": "./plugins/quiet-output",
+      "description": "Runs noisy install/build/test commands through a wrapper so only PASS/FAIL, errors and the package version reach Claude's context.",
+      "version": "1.0.0"
+    }
+  ]
+}
