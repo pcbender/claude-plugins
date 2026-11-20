@@ -47,7 +47,7 @@ cargo, go, make, `cmake --build`, mvn, gradle, `./gradlew`, pytest,
 **Tunables:** `QUIET_RUN_MAX_ERRORS` (default 30), `QUIET_RUN_TAIL`
 (default 15), `QUIET_RUN_LOG_DIR` (default `${TMPDIR:-/tmp}/quiet-run`).
 
-**Requires:** `bash` and `jq`.
+**Requires:** `bash` and `jq`. Without jq the hook prints a warning and lets commands run unfiltered.
 
 **Limits:** errors are found by keyword, so a failure message without words
 like "error" or "failed" only shows in the last lines. Version detection is

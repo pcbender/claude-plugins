@@ -14,6 +14,14 @@
 input=$(cat)
 [ "${CLAUDE_QUIET_OFF:-0}" = "1" ] && { echo '{}'; exit 0; }
 
+# Without jq the hook can't read its input. Exit 1 (non-blocking error) so
+# the warning is visible but Bash commands still run unfiltered; exit 2
+# would block every Bash command on a machine without jq.
+if ! command -v jq >/dev/null 2>&1; then
+  echo "quiet-output: jq not found, output filtering is off. Install jq to enable it." >&2
+  exit 1
+fi
+
 cmd=$(printf '%s' "$input" | jq -r '.tool_input.command // empty')
 [ -z "$cmd" ] && { echo '{}'; exit 0; }
 
