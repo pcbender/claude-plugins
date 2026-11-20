@@ -82,14 +82,21 @@ else
   echo "FAIL  exit=$status  ${secs}s  ${lines} lines of output"
   echo "cmd:     $cmd"
   echo "version: $(detect_version)"
-  errs=$(errors)
-  if [ -n "$errs" ]; then
-    total=$(printf '%s\n' "$errs" | wc -l | tr -d ' ')
-    echo "--- errors (${total} unique, showing up to ${max_errors}) ---"
-    printf '%s\n' "$errs" | head -n "$max_errors" | cut -c1-300
+  if [ "$lines" -le "$tail_n" ]; then
+    # Short log: print it once instead of an errors section plus a tail
+    # that would repeat the same lines.
+    echo "--- output (all ${lines} lines) ---"
+    clean | cut -c1-300
+  else
+    errs=$(errors)
+    if [ -n "$errs" ]; then
+      total=$(printf '%s\n' "$errs" | wc -l | tr -d ' ')
+      echo "--- errors (${total} unique, showing up to ${max_errors}) ---"
+      printf '%s\n' "$errs" | head -n "$max_errors" | cut -c1-300
+    fi
+    echo "--- last ${tail_n} lines ---"
+    clean | tail -n "$tail_n" | cut -c1-300
   fi
-  echo "--- last ${tail_n} lines ---"
-  clean | tail -n "$tail_n" | cut -c1-300
 fi
 echo "full log: $log"
 exit "$status"

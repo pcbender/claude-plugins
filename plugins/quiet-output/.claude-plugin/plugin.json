@@ -1,6 +1,6 @@
 {
   "name": "quiet-output",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Runs noisy install/build/test commands through a wrapper so only PASS/FAIL, errors and the package version reach Claude's context.",
   "author": {
     "name": "pcbender"
