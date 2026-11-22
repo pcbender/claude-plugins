@@ -14,6 +14,29 @@ In Claude Code, run once per machine:
 Pick **user scope** when asked, so it applies in every project. Restart the
 session (or run `/hooks` to check) for the hook to load.
 
+## Updates
+
+In Claude Code, run once per machine:
+
+Run these commands in your shell (omitting the marketplace name updates all registered marketplaces):
+
+```
+claude plugin marketplace update pcbender/claude-plugins
+claude plugin update quiet-output@pcbender-plugins
+```
+
+### Inside an Active Claude Code Session
+
+You can also do this interactively without leaving Claude Code:
+
+- Via Slash Commands:
+  1. Run /plugin marketplace update pcbender/claude-plugins
+  2. Run /plugin → go to the Installed tab → press Enter on your plugin and select Update now.   
+  3. Run /reload-plugins when prompted.   
+- Enable Auto-Updates (Recommended for Custom Repos): Custom GitHub/repo marketplaces have auto-update turned off by default. To have Claude Code pull updates automatically at session start:   
+  1. Run /plugin and switch to the Marketplaces tab.
+  2. Select the pcbender/claude-plugins repository marketplace and toggle Auto-update on.
+
 ## Plugins
 
 ### quiet-output
